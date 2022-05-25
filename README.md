@@ -5,6 +5,12 @@ This project only changes the column gaps between clusters, please visit its par
 
 ## Installation
 
-```S
-devtools::install_github("CoolandHot/pheatmap_bigGap")
+```r
+devtools::install_github("CoolandHot/bigGapHeatmap")
+```
+
+## Usage
+
+```r
+out.plot <- bigGapHeatmap::pheatmap(data, gap.size = "6", ...)
 ```
