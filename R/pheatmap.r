@@ -1,3 +1,6 @@
+pkg.env <- new.env()
+pkg.env$gap.size <- "10"
+
 lo = function(rown, coln, nrow, ncol, cellheight = NA, cellwidth = NA, treeheight_col, treeheight_row, legend, annotation_row, annotation_col, annotation_colors, annotation_legend, annotation_names_row, annotation_names_col, main, fontsize, fontsize_row , fontsize_col, angle_col, gaps_row, gaps_col, ...){
   # Get height of colnames and length of rownames
   if(!is.null(coln[1]) | (!is.na2(annotation_row) & annotation_names_row)){
@@ -126,7 +129,7 @@ lo = function(rown, coln, nrow, ncol, cellheight = NA, cellwidth = NA, treeheigh
   return(res)
 }
 
-find_coordinates = function(n, gaps, m = 1:n, gap.size="10"){
+find_coordinates = function(n, gaps, m = 1:n){
   if(length(gaps) == 0){
     return(list(coord = unit(m / n, "npc"), size = unit(1 / n, "npc") ))
   }
@@ -135,10 +138,10 @@ find_coordinates = function(n, gaps, m = 1:n, gap.size="10"){
     stop("Gaps do not match with matrix size")
   }
 
-  size = (1 / n) * (unit(1, "npc") - length(gaps) * unit(gap.size, "bigpts"))
+  size = (1 / n) * (unit(1, "npc") - length(gaps) * unit(pkg.env$gap.size, "bigpts"))
 
   gaps2 = apply(sapply(gaps, function(gap, x){x > gap}, m), 1, sum)
-  coord = m * size + (gaps2 * unit(gap.size, "bigpts"))
+  coord = m * size + (gaps2 * unit(pkg.env$gap.size, "bigpts"))
 
   return(list(coord = coord, size = size))
 }
@@ -681,8 +684,8 @@ identity2 = function(x, ...){
 #' separately one can cluster the rows in advance and show only the cluster centers.
 #' The number of clusters can be tuned with parameter kmeans_k.
 #'
-#'
 #' @param mat numeric matrix of the values to be plotted.
+#' @param gap.size set the gap size, value in string format. Default is "10", 10 pts.
 #' @param color vector of colors used in heatmap.
 #' @param kmeans_k the number of kmeans clusters to make, if we want to aggregate the
 #' rows before drawing heatmap. If NA then the rows are not aggregated.
@@ -883,8 +886,28 @@ identity2 = function(x, ...){
 #' }
 #'
 #' @export
-pheatmap = function(mat, color = colorRampPalette(rev(brewer.pal(n = 7, name = "RdYlBu")))(100), kmeans_k = NA, breaks = NA, border_color = "grey60", cellwidth = NA, cellheight = NA, scale = "none", cluster_rows = TRUE, cluster_cols = TRUE, clustering_distance_rows = "euclidean", clustering_distance_cols = "euclidean", clustering_method = "complete", clustering_callback = identity2, cutree_rows = NA, cutree_cols = NA,  treeheight_row = ifelse((class(cluster_rows) == "hclust") || cluster_rows, 50, 0), treeheight_col = ifelse((class(cluster_cols) == "hclust") || cluster_cols, 50, 0), legend = TRUE, legend_breaks = NA, legend_labels = NA, annotation_row = NA, annotation_col = NA, annotation = NA, annotation_colors = NA, annotation_legend = TRUE, annotation_names_row = TRUE, annotation_names_col = TRUE, drop_levels = TRUE, show_rownames = T, show_colnames = T, main = NA, fontsize = 10, fontsize_row = fontsize, fontsize_col = fontsize, angle_col = c("270", "0", "45", "90", "315"), display_numbers = F, number_format = "%.2f", number_color = "grey30", fontsize_number = 0.8 * fontsize, gaps_row = NULL, gaps_col = NULL, labels_row = NULL, labels_col = NULL, filename = NA, width = NA, height = NA, silent = FALSE, na_col = "#DDDDDD", ...){
+pheatmap = function(mat, gap.size = "10",
+                    color = colorRampPalette(rev(brewer.pal(n = 7, name = "RdYlBu")))(100),
+                    kmeans_k = NA, breaks = NA, border_color = "grey60",
+                    cellwidth = NA, cellheight = NA, scale = "none",
+                    cluster_rows = TRUE, cluster_cols = TRUE,
+                    clustering_distance_rows = "euclidean",
+                    clustering_distance_cols = "euclidean",
+                    clustering_method = "complete",
+                    clustering_callback = identity2,
+                    cutree_rows = NA, cutree_cols = NA,
+                    treeheight_row = ifelse((class(cluster_rows) == "hclust") || cluster_rows, 50, 0),
+                    treeheight_col = ifelse((class(cluster_cols) == "hclust") || cluster_cols, 50, 0),
+                    legend = TRUE, legend_breaks = NA, legend_labels = NA, annotation_row = NA,
+                    annotation_col = NA, annotation = NA, annotation_colors = NA, annotation_legend = TRUE,
+                    annotation_names_row = TRUE, annotation_names_col = TRUE, drop_levels = TRUE,
+                    show_rownames = T, show_colnames = T, main = NA, fontsize = 10, fontsize_row = fontsize,
+                    fontsize_col = fontsize, angle_col = c("270", "0", "45", "90", "315"), display_numbers = F,
+                    number_format = "%.2f", number_color = "grey30", fontsize_number = 0.8 * fontsize,
+                    gaps_row = NULL, gaps_col = NULL, labels_row = NULL, labels_col = NULL,
+                    filename = NA, width = NA, height = NA, silent = FALSE, na_col = "#DDDDDD", ...){
 
+  pkg.env$gap.size <- gap.size
   # Set labels
   if(is.null(labels_row)){
     labels_row = rownames(mat)
