@@ -1,10 +1,9 @@
-Package: pheatmap
+Package: bigGapHeatmap
 Type: Package
 Title: Pretty Heatmaps
-Version: 1.0.12
-Date: 2018-12-26
-Author: Raivo Kolde
-Maintainer: Raivo Kolde <rkolde@gmail.com>
+Version: 0.1.0
+Author: Huan
+Maintainer: Huan <coolandhot2006@qq.com>
 Depends:
     R (>= 2.0)
 Description: Implementation of heatmaps that offers more control
@@ -19,4 +18,5 @@ Imports:
     graphics
 License: GPL-2
 LazyLoad: yes
-RoxygenNote: 6.0.1
+Encoding: UTF-8
+RoxygenNote: 7.1.2
