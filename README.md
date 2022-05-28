@@ -23,7 +23,7 @@ out.plot <- bigGapHeatmap::pheatmap(data, gap.size = "6", ...)
   
   ```r
   # from https://slowkow.com/notes/pheatmap-tutorial/
-
+  set.seed(54)
   random_string <- function(n) {
     substr(paste(sample(letters), collapse = ""), 1, n)
   }
