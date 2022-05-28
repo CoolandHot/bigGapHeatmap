@@ -55,4 +55,4 @@ out.plot <- bigGapHeatmap::pheatmap(data, gap.size = "6", ...)
 
   ```
 </details>
-![image](https://raw.githubusercontent.com/CoolandHot/bigGapHeatmap/master/bigGapHeatmap_example.png)
+![image](./bigGapHeatmap_example.png)
