@@ -685,7 +685,7 @@ identity2 = function(x, ...){
 #' The number of clusters can be tuned with parameter kmeans_k.
 #'
 #' @param mat numeric matrix of the values to be plotted.
-#' @param gap.size set the gap size, value in string format. Default is "10", 10 pts.
+#' @param gap.size set the gap size, value in string format. Default is "4", 4 pts.
 #' @param color vector of colors used in heatmap.
 #' @param kmeans_k the number of kmeans clusters to make, if we want to aggregate the
 #' rows before drawing heatmap. If NA then the rows are not aggregated.
@@ -886,7 +886,7 @@ identity2 = function(x, ...){
 #' }
 #'
 #' @export
-pheatmap = function(mat, gap.size = "10",
+pheatmap = function(mat, gap.size = "4",
                     color = colorRampPalette(rev(brewer.pal(n = 7, name = "RdYlBu")))(100),
                     kmeans_k = NA, breaks = NA, border_color = "grey60",
                     cellwidth = NA, cellheight = NA, scale = "none",
