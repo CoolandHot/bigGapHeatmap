@@ -6,7 +6,7 @@
 \usage{
 pheatmap(
   mat,
-  gap.size = "10",
+  gap.size = "4",
   color = colorRampPalette(rev(brewer.pal(n = 7, name = "RdYlBu")))(100),
   kmeans_k = NA,
   breaks = NA,
@@ -61,7 +61,7 @@ pheatmap(
 \arguments{
 \item{mat}{numeric matrix of the values to be plotted.}
 
-\item{gap.size}{set the gap size, value in string format. Default is "10", 10 pts.}
+\item{gap.size}{set the gap size, value in string format. Default is "4", 4 pts.}
 
 \item{color}{vector of colors used in heatmap.}
 
