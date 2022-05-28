@@ -1,5 +1,5 @@
 pkg.env <- new.env()
-pkg.env$gap.size <- "10"
+pkg.env$gap.size <- "4"
 
 lo = function(rown, coln, nrow, ncol, cellheight = NA, cellwidth = NA, treeheight_col, treeheight_row, legend, annotation_row, annotation_col, annotation_colors, annotation_legend, annotation_names_row, annotation_names_col, main, fontsize, fontsize_row , fontsize_col, angle_col, gaps_row, gaps_col, ...){
   # Get height of colnames and length of rownames
