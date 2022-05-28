@@ -14,3 +14,42 @@ devtools::install_github("CoolandHot/bigGapHeatmap")
 ```r
 out.plot <- bigGapHeatmap::pheatmap(data, gap.size = "6", ...)
 ```
+
+## Example
+<details>
+  <summary>source code of this example</summary>
+  
+```r
+random_string <- function(n) {
+  substr(paste(sample(letters), collapse = ""), 1, n)
+}
+
+mat <- matrix(rgamma(1000, shape = 1) * 5, ncol = 50)
+
+colnames(mat) <- paste(
+  rep(1:3, each = ncol(mat) / 3),
+  replicate(ncol(mat), random_string(5)),
+  sep = ""
+)
+rownames(mat) <- replicate(nrow(mat), random_string(3))
+
+col_groups <- substr(colnames(mat), 1, 1)
+
+mat[,col_groups == "1"] <- mat[,col_groups == "1"] * 5
+
+mat_col <- data.frame(group = col_groups)
+rownames(mat_col) <- colnames(mat)
+
+
+bigGapHeatmap::pheatmap(
+  mat = mat,
+  gap.size = "6",
+  cutree_rows = 3,
+  cutree_cols = 4,
+  fontsize = 14,
+  main = "Example Heatmap"
+)
+
+```
+</details>
+![](https://raw.githubusercontent.com/CoolandHot/bigGapHeatmap/master/bigGapHeatmap_example.png)
