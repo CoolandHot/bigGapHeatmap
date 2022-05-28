@@ -1,4 +1,4 @@
-pheatmap with larger gaps
+R package: pheatmap with larger gaps
 ========
 
 This project only add one parameter, `gap.size`, for changing the column gaps between clusters. Other functions are exactly same as its parent project, please visit [raivokolde/pheatmap](https://github.com/raivokolde/pheatmap) more information.  
